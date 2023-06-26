@@ -7,7 +7,7 @@ QBCore.Functions.CreateCallback('nd-adminmenu/CheckPerms', function(source, cb)
   if QBCore.Functions.HasPermission(src, 'admin') or IsPlayerAceAllowed(src, 'command') then
     cb(true)
   else
-    cb(true)
+    cb(false)
   end
 end)
 
