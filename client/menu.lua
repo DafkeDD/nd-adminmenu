@@ -4,8 +4,6 @@ QBCore = exports['qb-core']:GetCoreObject() --Boy what the hell boy
 RegisterNetEvent('nd-adminmenu/openmenu', function()
     --print('megyen-e?')
     --Getting the permission to run anything!
-    QBCore.Functions.TriggerCallback('nd-adminmenu/CheckPerms', function(result)
-        if result == true then
     -- vehicle menu
     lib.registerMenu({
         id = 'vehiclemenu',
@@ -95,24 +93,6 @@ RegisterNetEvent('nd-adminmenu/openmenu', function()
         elseif selected == 2 then
             lib.showMenu('playermenu')
         end        
-    end)
-        else
-            lib.notify({
-                id = 'no perm',
-                title = locale('menu_title'),
-                description = locale('no_perm'),
-                position = 'top',
-                style = {
-                    backgroundColor = '#141517',
-                    color = '#C1C2C5',
-                    ['.description'] = {
-                        color = '#909296'
-                    }
-                },
-                icon = 'ban',
-                iconColor = '#C53030'
-            })
-        end
     end)
 end)
 
