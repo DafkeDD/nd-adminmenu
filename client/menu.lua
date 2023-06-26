@@ -2,9 +2,6 @@ lib.locale() --Getting the locale for the menu!
 QBCore = exports['qb-core']:GetCoreObject() --Boy what the hell boy
 
 RegisterNetEvent('nd-adminmenu/openmenu', function()
-    --print('megyen-e?')
-    --Getting the permission to run anything!
-    -- vehicle menu
     lib.registerMenu({
         id = 'vehiclemenu',
         title = locale('vehicle_menu_title'),
@@ -104,7 +101,7 @@ CreateThread(function()
         onReleased = function()
             QBCore.Functions.TriggerCallback('nd-adminmenu/CheckPerms', function(result)
                 if result == true then
-                    lib.showMenu('adminmenu')
+                    TriggerEvent('nd-adminmenu/openmenu')
                 else
                     lib.notify({
                         id = 'no perm',
