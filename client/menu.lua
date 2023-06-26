@@ -101,10 +101,10 @@ CreateThread(function()
         name = 'openmenu',
         description = locale('keybind_name'),
         defaultKey = Config.menukeybind,
-        onReleased = function(self)
+        onReleased = function()
             QBCore.Functions.TriggerCallback('nd-adminmenu/CheckPerms', function(result)
                 if result == true then
-                    TriggerEvent('nd-adminmenu/openmenu')
+                    lib.showMenu('adminmenu')
                 else
                     lib.notify({
                         id = 'no perm',
