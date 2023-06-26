@@ -1,4 +1,5 @@
 lib.locale() --Getting the locale for the menu!
+QBCore = exports['qb-core']:GetCoreObject() --Boy what the hell boy
 
 RegisterNetEvent('nd-adminmenu/openmenu', function()
     --print('megyen-e?')
