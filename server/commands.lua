@@ -35,42 +35,21 @@ end)
 
 
 --ban system server side! (Imported from qb-adminmenu but modified by drazox to fit the admin menu!)
-RegisterNetEvent('nd-adminmenu/server/ban', function(player, time, reason, perma)
+RegisterNetEvent('nd-adminmenu/server/ban', function(input)
   local src = source
-  
-  local banTime = os.time() + time
-  if perma then
-    time2 = 99999999999
-  end
-  local src = source
-local timestamp = math.floor(time / 1000)
-local date = os.date('%Y-%m-%d %H:%M:%S', timestamp)
-  local timeTable = os.date('*t', banTime)
+  player = input[1]
+  local BanDuration = (input[3] or 0) * 3600 + (input[4] or 0) * 86400 + (input[5] or 0) * 2629743
+  print('ID: ' ..input[1].. ' Ki lett bannolva! Oka: ' ..input[2].. ' Végetér: ' ..BanDuration)
   MySQL.insert('INSERT INTO bans (name, license, discord, ip, reason, expire, bannedby) VALUES (?, ?, ?, ?, ?, ?, ?)', {
-    GetPlayerName(player),
-    QBCore.Functions.GetIdentifier(player, 'license'),
-    QBCore.Functions.GetIdentifier(player, 'discord'),
-    QBCore.Functions.GetIdentifier(player, 'ip'),
-    reason,
-    timestamp,
+    GetPlayerName(input[1]),
+    QBCore.Functions.GetIdentifier(input[1], 'license'),
+    QBCore.Functions.GetIdentifier(input[1], 'discord'),
+    QBCore.Functions.GetIdentifier(input[1], 'ip'),
+    input[2],
+    BanDuration,
     GetPlayerName(src)
   })
-
-  if perma then
-    DropPlayer(player, 'Ki lettél bannolva!\nOka: ' .. reason .. '\nBannod végleges!')
-  else
-    DropPlayer(player,
-      'Ki lettél bannolva!\nOka: ' ..
-      reason ..
-      '\nBannod vége: ' ..
-      timeTable['day'] ..
-      '/' ..
-      timeTable['month'] ..
-      '/' ..
-      timeTable['year'] ..
-      ' ' ..
-      timeTable['hour'] .. ':' .. timeTable['min'] .. '\n🔸 Több információért: Csatlakozz a discord szerverünkre!')
-  end
+    DropPlayer(player, 'ID: ' ..input[1].. ' Ki lett bannolva! Oka: ' ..input[2])
 end)
 
 

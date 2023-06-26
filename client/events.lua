@@ -335,105 +335,106 @@ end)
 
 --Ban system
 RegisterNetEvent('nd-adminmenu/banplayer/client', function()
-    local input = lib.inputDialog('Ban Kitöltése', {
-        {type = 'input', label =  locale('revive_player_id'), description = '', required = true, min = 1, max = 6},
-        {type = 'input', label = locale('ban_reason'), description = '', required = true, min = 4, max = 16},
-        {type = 'checkbox', label = locale('banisperm')},
-         {type = 'date', label = 'Ban végetérése', icon = {'far', 'calendar'}, default = true, format = "DD/MM/YYYY"}
-      })
-      print(tostring(input[3]))
-      if tostring(input[3]) then
-           input[4] = 9999999999
-           end
-      if tostring(input[3]) then
-      lib.registerContext({
-        id = 'ban_time',
-        title = locale('ban_time'),
-        options = {
-          {
-            title = locale('1day'),
-            description = '',
-            icon = 'hammer',
-            onSelect = function()
-                time2 = 86400
-                TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
-              end,
-          },
-          {
-            title = locale('3day'),
-            description = '',
-            icon = 'hammer',
-            onSelect = function()
-                time2 = 259200
-                TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
-              end,
-          },
-          {
-            title = locale('1week'),
-            description = '',
-            icon = 'hammer',
-            onSelect = function()
-                time2 = 604800
-                TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
-              end,
-          },
-          {
-            title = locale('1month'),
-            description = '',
-            icon = 'hammer',
-            onSelect = function()
-                time2 = 2678400
-                TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
-              end,
-          },
-          {
-            title = locale('6month'),
-            description = '',
-            icon = 'hammer',
-            onSelect = function()
-                time2 = 16070400
-                TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
-              end,
-          },
-        }
-      })
-      lib.showContext('ban_time')
-      TriggerServerEvent('nd-adminmenu/server/ban', input[1], time2, input[2], tostring(input[3]))
-      lib.notify({
-        id = 'adminannouncment',
-        title = locale('menu_title'),
-        description = locale('player_banned'),
-        position = 'top',
-        style = {
-            backgroundColor = '#141517',
-            color = '#C1C2C5',
-            ['.description'] = {
-                color = '#909296'
-            }
-        },
-        icon = 'hammer',
-        iconColor = 'red'
+    local Input = lib.inputDialog('Ban', {
+        { type = 'input', label = 'ID', placeholder = '13'},
+        { type = 'input', label = locale('inputkick'), placeholder = 'VDM'},
+        { type = 'number', label = locale('input1ban')},
+        { type = 'number', label = locale('input2ban')},
+        { type = 'number', label = locale('input3ban')}
     })
-    else
-        time2 = 99999
-      lib.notify({
-        id = 'adminannouncment',
-        title = locale('menu_title'),
-        description = locale('player_banned'),
-        position = 'top',
-        style = {
-            backgroundColor = '#141517',
-            color = '#C1C2C5',
-            ['.description'] = {
-                color = '#909296'
-            }
-        },
-        icon = 'hammer',
-        iconColor = 'red'
-    })
-    TriggerServerEvent('nd-adminmenu/server/ban', input[1], time2, input[2], tostring(input[3]))
-    print('ID: ' ..input[1].. ' REASON: ' ..input[2]..  ' Perm: ' ..tostring(input[3]))
-end
+    --   print(tostring(input[3]))
+    --   if tostring(input[3]) then
+    --        input[4] = 9999999999
+    --        end
+    --   if tostring(input[3]) then
+    --   lib.registerContext({
+    --     id = 'ban_time',
+    --     title = locale('ban_time'),
+    --     options = {
+    --       {
+    --         title = locale('1day'),
+    --         description = '',
+    --         icon = 'hammer',
+    --         onSelect = function()
+    --             time2 = 86400
+    --             TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
+    --           end,
+    --       },
+    --       {
+    --         title = locale('3day'),
+    --         description = '',
+    --         icon = 'hammer',
+    --         onSelect = function()
+    --             time2 = 259200
+    --             TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
+    --           end,
+    --       },
+    --       {
+    --         title = locale('1week'),
+    --         description = '',
+    --         icon = 'hammer',
+    --         onSelect = function()
+    --             time2 = 604800
+    --             TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
+    --           end,
+    --       },
+    --       {
+    --         title = locale('1month'),
+    --         description = '',
+    --         icon = 'hammer',
+    --         onSelect = function()
+    --             time2 = 2678400
+    --             TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
+    --           end,
+    --       },
+    --       {
+    --         title = locale('6month'),
+    --         description = '',
+    --         icon = 'hammer',
+    --         onSelect = function()
+    --             time2 = 16070400
+    --             TriggerServerEvent('nd-adminmenu/server/ban', input[1], input[4], input[2], tostring(input[3]))
+    --           end,
+    --       },
+    --     }
+    --   })
+    --   lib.showContext('ban_time')
+    --   lib.notify({
+    --     id = 'adminannouncment',
+    --     title = locale('menu_title'),
+    --     description = locale('player_banned'),
+    --     position = 'top',
+    --     style = {
+    --         backgroundColor = '#141517',
+    --         color = '#C1C2C5',
+    --         ['.description'] = {
+    --             color = '#909296'
+    --         }
+    --     },
+    --     icon = 'hammer',
+    --     iconColor = 'red'
+    -- })
+    -- else
+    --     time2 = 99999
+    --   lib.notify({
+    --     id = 'adminannouncment',
+    --     title = locale('menu_title'),
+    --     description = locale('player_banned'),
+    --     position = 'top',
+    --     style = {
+    --         backgroundColor = '#141517',
+    --         color = '#C1C2C5',
+    --         ['.description'] = {
+    --             color = '#909296'
+    --         }
+    --     },
+    --     icon = 'hammer',
+    --     iconColor = 'red'
+    -- })
+    -- TriggerServerEvent('nd-adminmenu/server/ban', input[1], time2, input[2], tostring(input[3]))
+    TriggerServerEvent('nd-adminmenu/server/ban', Input)
+    print('ID: ' ..Input[1].. ' REASON: ' ..Input[2]..  ' óra: ' ..Input[3].. ' nap: ' ..Input[4].. ' hónap: ' ..Input[5])
+-- end
 end)
 
 

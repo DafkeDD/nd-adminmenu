@@ -64,5 +64,22 @@
     "1month": "1 Hónap",
     "6month": "6 Hónap",
 
-    "open_menu_help": "Adminisztrátori menü!"
+    "open_menu_help": "Adminisztrátori menü!",
+      "labelkick" : "Kick",
+      "desckick" : "Yeet this player from the server",
+      "inputkick" : "Reason",
+      "labelban" : "Ban",
+     "descban" : "Perm yeet this player from the server",
+      "input1ban" : "Hours",
+      "input2ban" : "Days",
+      "input3ban" : "Months",
+      "banreason" : "Reason: %{reason}, until %{lenght}",
+      "labelperm" : "Permission",
+      "descperm" : "Change someone\"s permission level",
+      "permvalue1" : "Remove",
+      "permvalue2" : "Mod",
+      "permvalue3" : "Admin",
+      "permvalue4" : "God",
   }
+
+  
