@@ -34,7 +34,7 @@
 This is an old vid! But it should do the trick!
 https://streamable.com/tfwi9t
 
-# Contect me
+# Contact me
 
 - Contact me if you have a problem with stealing your code! (I will remove your code if needed to!)
 - Contect me if you have made some good upgrades to the menu!
