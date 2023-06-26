@@ -2,22 +2,22 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 lib.locale()
 
--- QBCore.Functions.CreateCallback('nd-adminmenu/CheckPerms', function(source, cb)
---   local src = source                                      
---   if QBCore.Functions.HasPermission(src, 'admin') or IsPlayerAceAllowed(src, 'command') then
---     cb(true)
---   else
---     cb(false)
---   end
--- end)
-
-lib.callback.register('nd-adminmenu/CheckPerms', function(source, cb)                                    
-  if QBCore.Functions.HasPermission(source, 'admin') or IsPlayerAceAllowed(source, 'command') then
+QBCore.Functions.CreateCallback('nd-adminmenu/CheckPerms', function(source, cb)
+  local src = source                                      
+  if QBCore.Functions.HasPermission(src, 'admin') or IsPlayerAceAllowed(src, 'command') then
     cb(true)
   else
     cb(false)
   end
 end)
+
+-- lib.callback.register('nd-adminmenu/CheckPerms', function(source, cb)                                    
+--   if QBCore.Functions.HasPermission(source, 'admin') or IsPlayerAceAllowed(source, 'command') then
+--     cb(true)
+--   else
+--     cb(false)
+--   end
+-- end)
 
 --maga a parancs
 lib.addCommand(Config.menucommand, {

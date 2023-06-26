@@ -4,7 +4,7 @@ QBCore = exports['qb-core']:GetCoreObject() --Boy what the hell boy
 RegisterNetEvent('nd-adminmenu/openmenu', function()
     --print('megyen-e?')
     --Getting the permission to run anything!
-    lib.callback('nd-adminmenu/CheckPerms', function(result)
+    QBCore.Functions.TriggerCallback('nd-adminmenu/CheckPerms', function(result)
         if result == true then
     -- vehicle menu
     lib.registerMenu({
@@ -122,7 +122,7 @@ CreateThread(function()
         description = locale('keybind_name'),
         defaultKey = Config.menukeybind,
         onReleased = function(self)
-            lib.callback('nd-adminmenu/CheckPerms', function(result)
+            QBCore.Functions.TriggerCallback('nd-adminmenu/CheckPerms', function(result)
                 if result == true then
                     TriggerEvent('nd-adminmenu/openmenu')
                 else
