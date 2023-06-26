@@ -1,10 +1,11 @@
-local QBCore = exports['qb-core']:GetCoreObject() --Boy what the hell boy
-lib.locale()
+lib.locale() --Getting the locale for the menu!
 
 RegisterNetEvent('nd-adminmenu/openmenu', function()
     --print('megyen-e?')
-
-    -- Jármű menü
+    --Getting the permission to run anything!
+    QBCore.Functions.TriggerCallback('nd-adminmenu/CheckPerms', function(result)
+        if result == true then
+    -- vehicle menu
     lib.registerMenu({
         id = 'vehiclemenu',
         title = locale('vehicle_menu_title'),
@@ -18,7 +19,7 @@ RegisterNetEvent('nd-adminmenu/openmenu', function()
             {label = locale('vehicle_fix'), description = locale('vehicle_fix_desc')},
         },
     }, function(selected, scrollIndex, args)
-        --print('Kiválasztott jármű opció: '..selected)
+        --print('Selected option: '..selected)
         if selected == 1 then
             TriggerEvent('nd-adminmenu/spawnVehicle')
         elseif selected == 2 then
@@ -49,7 +50,7 @@ RegisterNetEvent('nd-adminmenu/openmenu', function()
             {label = locale('invisible')},
         },
     }, function(selected, scrollIndex, args)
-       -- print('Kiválasztott játékos opció: '..selected)
+       -- print('Selected option: '..selected)
         if selected == 1 then
             TriggerEvent('nd-adminmenu/togglenoclip')
             lib.showMenu('playermenu')
@@ -87,17 +88,13 @@ RegisterNetEvent('nd-adminmenu/openmenu', function()
             {label = locale('player_options'), description = locale('player_options_desc'), menuId = 'playermenu'},
         },
     }, function(selected, scrollIndex, args)
-        --print('Kiválasztott menüpont: '..selected)
+        --print('Selected option: '..selected)
         if selected == 1 then
             lib.showMenu('vehiclemenu')
         elseif selected == 2 then
             lib.showMenu('playermenu')
         end        
     end)
-
-    QBCore.Functions.TriggerCallback('nd-adminmenu/CheckPerms', function(result)
-        if result == true then
-            lib.showMenu('adminmenu')
         else
             lib.notify({
                 id = 'no perm',
@@ -117,14 +114,34 @@ RegisterNetEvent('nd-adminmenu/openmenu', function()
         end
     end)
 end)
-CreateThread(function()
-lib.addKeybind({
-    name = 'openmenu',
-    description = locale('keybind_name'),
-    defaultKey = Config.menukeybind,
-    onReleased = function(self)
-       TriggerEvent('nd-adminmenu/openmenu')
-    end,
-})
-end)
 
+CreateThread(function()
+    lib.addKeybind({
+        name = 'openmenu',
+        description = locale('keybind_name'),
+        defaultKey = Config.menukeybind,
+        onReleased = function(self)
+            QBCore.Functions.TriggerCallback('nd-adminmenu/CheckPerms', function(result)
+                if result == true then
+                    TriggerEvent('nd-adminmenu/openmenu')
+                else
+                    lib.notify({
+                        id = 'no perm',
+                        title = locale('menu_title'),
+                        description = locale('no_perm'),
+                        position = 'top',
+                        style = {
+                            backgroundColor = '#141517',
+                            color = '#C1C2C5',
+                            ['.description'] = {
+                                color = '#909296'
+                            }
+                        },
+                        icon = 'ban',
+                        iconColor = '#C53030'
+                    })
+                end
+            end)
+        end,
+    })
+end)
