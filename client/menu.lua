@@ -117,13 +117,14 @@ RegisterNetEvent('nd-adminmenu/openmenu', function()
         end
     end)
 end)
+
 CreateThread(function()
-lib.addKeybind({
-    name = 'openmenu',
-    description = locale('keybind_name'),
-    defaultKey = Config.menukeybind,
-    onReleased = function(self)
-       TriggerEvent('nd-adminmenu/openmenu')
-    end,
-})
+    lib.addKeybind({
+     name = 'openmenu',
+     description = locale('keybind_name'),
+     defaultKey = Config.menukeybind,
+     onReleased = function(self)
+        TriggerEvent('nd-adminmenu/openmenu')
+     end,
+    })
 end)
